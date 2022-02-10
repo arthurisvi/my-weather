@@ -1,22 +1,40 @@
 <template>
   <div class="card-container">
     <div class="card" v-for="city in weathersLocal" :key="city.id">
+      <div id="button-delete">
+        <button @click="removeToCard(city)">X</button>
+      </div>
+
       <div class="box-card">
         <div>
           <h3>{{ city.name }}, {{ city.country }}</h3>
         </div>
-        <div class="img-weather">img</div>
+        <div class="img-weather">
+          <img :src="city.icon" alt="weather" />
+        </div>
         <div class="weather-info">{{ city.main }}</div>
-        <div class="weather-info">{{ city.temp }}°</div>
+        <div class="weather-info">
+          <h1>{{ city.temp }}°</h1>
+        </div>
         <div class="weather-info">Feels like: {{ city.feelsLike }}°</div>
 
-        <div class="temp-status">
-          <div>{{ city.humidity }}%</div>
-          <div>{{ city.temp_max }}°</div>
-          <div>{{ city.temp_min }}°</div>
+        <div class="weather-icons">
+          <img :src="humityIcon" alt="weather" />
+          <img :src="tempMaxIcon" alt="weather" />
+          <img :src="tempMinIcon" alt="weather" />
         </div>
 
-        <button @click="removeToCard(city)">Excluir</button>
+        <div class="temp-status">
+          <div>
+            <p>{{ city.humidity }}%</p>
+          </div>
+          <div>
+            <p>{{ city.temp_max }}°</p>
+          </div>
+          <div>
+            <p>{{ city.temp_min }}°</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -31,6 +49,12 @@ export default {
   data() {
     return {
       weathersLocal: this.weathers,
+      humityIcon:
+        "https://uploaddeimagens.com.br/images/003/718/584/original/humity.png?1644506513",
+      tempMinIcon:
+        "https://uploaddeimagens.com.br/images/003/718/589/full/down.png?1644506558",
+      tempMaxIcon:
+        "https://uploaddeimagens.com.br/images/003/718/592/full/up.png?1644506579",
     };
   },
   methods: {
@@ -61,30 +85,62 @@ export default {
 }
 
 .box-card {
-  background: red;
-  padding-top: 40px;
+  padding-top: 20px;
   margin: auto;
   width: 80%;
   height: 80%;
 }
 
+.box-card h1 {
+  color: black;
+  font-size: 68px;
+}
+
 .box-card h3 {
   text-align: center;
-  padding-bottom: 20px;
 }
 
 .img-weather {
-  background: green;
   margin: auto;
   width: 60%;
-  height: 40%;
+  height: 32.5%;
+}
+
+.img-weather img {
+  width: 100%;
 }
 
 .weather-info {
   text-align: center;
+  margin-bottom: 5px;
 }
 
-.temp-status div {
-  display: inline-block;
+.temp-status,
+.weather-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 5px;
+}
+
+#button-delete {
+  display: flex;
+  justify-content: right;
+  padding: 7px;
+}
+
+#button-delete button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.temp-status p {
+  font-size: 20px;
+}
+
+.weather-icons img {
+  width: 36px;
+  height: 36px;
 }
 </style>
