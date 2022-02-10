@@ -16,7 +16,11 @@
       </div>
 
       <Card :weathers="weathers"></Card>
-      <Modal v-if="showModal" />
+      <Modal
+        :messageError="messageError"
+        v-show="showModal"
+        @close="closeModal"
+      />
     </main>
   </div>
 </template>
@@ -38,6 +42,7 @@ export default {
       searchWeather: "",
       weathers: [],
       showModal: false,
+      messageError: "",
     };
   },
   methods: {
@@ -77,18 +82,21 @@ export default {
 
         if (cityIsExistent) {
           this.showModal = !this.showModal;
-          alert("You are already monitoring this city!");
+          this.messageError = "You are already monitoring this city!";
         } else {
           //limiting slots to 5 cities
           if (this.weathers.length < 5) {
             this.weathers.push(cityWeather);
             this.searchWeather = "";
           } else {
-            alert("You can only track a maximum of 5 cities. Exclude any!");
+            this.showModal = !this.showModal;
+            this.messageError =
+              "You can only track a maximum of 5 cities. Exclude any!";
           }
         }
       } else {
-        alert("City not found. Make sure you typed it correctly.");
+        this.showModal = !this.showModal;
+        this.messageError = "City not found. Make sure you typed it correctly.";
       }
     },
 
@@ -98,6 +106,9 @@ export default {
 
     verifyCityAlreadyExists(weathers, results) {
       return weathers.find((city) => city.id === results.id);
+    },
+    closeModal() {
+      this.showModal = !this.showModal;
     },
   },
 };
