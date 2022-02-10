@@ -7,7 +7,7 @@
 
       <div class="box-card">
         <div>
-          <h3>{{ city.name }}, {{ city.country }}</h3>
+          <h4>{{ city.name }}, {{ city.country }}</h4>
         </div>
         <div class="img-weather">
           <img :src="city.icon" alt="weather" />
@@ -72,20 +72,20 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   padding: 30px 0px;
 }
 
 .card {
   width: 200px;
   height: 400px;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.6);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   margin: 0px 10px;
 }
 
 .box-card {
-  padding-top: 20px;
   margin: auto;
   width: 80%;
   height: 80%;
@@ -93,10 +93,10 @@ export default {
 
 .box-card h1 {
   color: black;
-  font-size: 68px;
+  font-size: 56px;
 }
 
-.box-card h3 {
+.box-card h4 {
   text-align: center;
 }
 
@@ -113,20 +113,24 @@ export default {
 .weather-info {
   text-align: center;
   margin-bottom: 5px;
+  font-size: 14px;
 }
 
 .temp-status,
 .weather-icons {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
+}
+
+.weather-icons {
   padding: 5px;
 }
 
 #button-delete {
   display: flex;
   justify-content: right;
-  padding: 7px;
+  padding: 5px 15px;
 }
 
 #button-delete button {
@@ -136,7 +140,7 @@ export default {
 }
 
 .temp-status p {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .weather-icons img {
