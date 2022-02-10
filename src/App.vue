@@ -50,23 +50,28 @@ export default {
     },
 
     setWeathersResults(results) {
-      const cityWeather = {
-        id: results.id,
-        name: results.name,
-        country: results.sys.country,
-        temp: results.main.temp,
-        temp_min: results.main.temp_min,
-        temp_max: results.main.temp_max,
-        humidity: results.main.humidity,
-        main: results.weather[0].main,
-        description: results.weather[0].description,
-      };
+      if (results.cod === 200) {
+        const cityWeather = {
+          id: results.id,
+          name: results.name,
+          country: results.sys.country,
+          temp: results.main.temp,
+          feelsLike: results.main.feels_like,
+          temp_min: results.main.temp_min,
+          temp_max: results.main.temp_max,
+          humidity: results.main.humidity,
+          main: results.weather[0].main,
+          description: results.weather[0].description,
+        };
 
-      if (this.weathers.length < 5) {
-        this.weathers.push(cityWeather);
-        this.searchWeather = "";
+        if (this.weathers.length < 5) {
+          this.weathers.push(cityWeather);
+          this.searchWeather = "";
+        } else {
+          alert("Você só pode acompanhar no máximo 5 cidades. Exclua alguma!");
+        }
       } else {
-        alert("Você só pode acompanhar no máximo 5 cidades. Exclua alguma!");
+        alert("Cidade não encontrada. Verifique se digitou corretamente.");
       }
     },
   },
@@ -92,7 +97,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 30px;
   min-height: 100vh;
   background-image: linear-gradient(
     to bottom,
