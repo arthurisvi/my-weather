@@ -55,13 +55,14 @@ export default {
           id: results.id,
           name: results.name,
           country: results.sys.country,
-          temp: results.main.temp,
-          feelsLike: results.main.feels_like,
-          temp_min: results.main.temp_min,
-          temp_max: results.main.temp_max,
+          temp: this.formatTemp(results.main.temp),
+          feelsLike: this.formatTemp(results.main.feels_like),
+          temp_min: this.formatTemp(results.main.temp_min),
+          temp_max: this.formatTemp(results.main.temp_max),
           humidity: results.main.humidity,
           main: results.weather[0].main,
           description: results.weather[0].description,
+          icon: `http://openweathermap.org/img/wn/${results.weather[0].icon}@2x.png`,
         };
 
         if (this.weathers.length < 5) {
@@ -73,6 +74,10 @@ export default {
       } else {
         alert("Cidade não encontrada. Verifique se digitou corretamente.");
       }
+    },
+
+    formatTemp(temp) {
+      return temp.toString().split(".")[0];
     },
   },
 };
