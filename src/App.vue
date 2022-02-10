@@ -65,19 +65,34 @@ export default {
           icon: `http://openweathermap.org/img/wn/${results.weather[0].icon}@2x.png`,
         };
 
-        if (this.weathers.length < 5) {
-          this.weathers.push(cityWeather);
-          this.searchWeather = "";
+        //checking if the city already exists
+        const cityIsExistent = this.verifyCityAlreadyExists(
+          this.weathers,
+          results
+        );
+
+        if (cityIsExistent) {
+          alert("You are already monitoring this city!");
         } else {
-          alert("Você só pode acompanhar no máximo 5 cidades. Exclua alguma!");
+          //limiting slots to 5 cities
+          if (this.weathers.length < 5) {
+            this.weathers.push(cityWeather);
+            this.searchWeather = "";
+          } else {
+            alert("You can only track a maximum of 5 cities. Exclude any!");
+          }
         }
       } else {
-        alert("Cidade não encontrada. Verifique se digitou corretamente.");
+        alert("City not found. Make sure you typed it correctly.");
       }
     },
 
     formatTemp(temp) {
       return temp.toString().split(".")[0];
+    },
+
+    verifyCityAlreadyExists(weathers, results) {
+      return weathers.find((city) => city.id === results.id);
     },
   },
 };
