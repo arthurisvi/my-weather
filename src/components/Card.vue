@@ -1,15 +1,23 @@
 <template>
   <div class="card-container">
     <div class="card" v-for="city in weathersLocal" :key="city.id">
-      <div>{{ city.name }}, {{ city.country }}</div>
-      <div>Temp: {{ city.temp }} °C</div>
-      <div>Max temp: {{ city.temp_max }} °C</div>
-      <div>Min temp: {{ city.temp_min }} °C</div>
-      <div>Humidity: {{ city.humidity }}</div>
-      <div>Main: {{ city.main }}</div>
-      <div>Description: {{ city.description }}</div>
+      <div class="box-card">
+        <div>
+          <h3>{{ city.name }}, {{ city.country }}</h3>
+        </div>
+        <div class="img-weather">img</div>
+        <div class="weather-info">{{ city.main }}</div>
+        <div class="weather-info">{{ city.temp }}°</div>
+        <div class="weather-info">Feels like: {{ city.feelsLike }}°</div>
 
-      <button @click="removeToCard(city)">Excluir</button>
+        <div class="temp-status">
+          <div>{{ city.humidity }}%</div>
+          <div>{{ city.temp_max }}°</div>
+          <div>{{ city.temp_min }}°</div>
+        </div>
+
+        <button @click="removeToCard(city)">Excluir</button>
+      </div>
     </div>
   </div>
 </template>
@@ -50,5 +58,33 @@ export default {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   margin: 0px 10px;
+}
+
+.box-card {
+  background: red;
+  padding-top: 40px;
+  margin: auto;
+  width: 80%;
+  height: 80%;
+}
+
+.box-card h3 {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.img-weather {
+  background: green;
+  margin: auto;
+  width: 60%;
+  height: 40%;
+}
+
+.weather-info {
+  text-align: center;
+}
+
+.temp-status div {
+  display: inline-block;
 }
 </style>
