@@ -2,7 +2,7 @@
   <div id="app">
     <main>
       <div id="title-app">
-        <h1>MY WEATHER</h1>
+        <h1>My Weather</h1>
       </div>
 
       <div class="container-search">
@@ -99,14 +99,17 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Poppins";
 }
 
 #app {
-  background: blue;
+  background: linear-gradient(to bottom, #1d65f0 0%, #1ad3fd 100%);
   background-size: cover;
   background-position: bottom;
   transition: 0.4s;
@@ -119,11 +122,11 @@ main {
   align-items: center;
   padding-top: 30px;
   min-height: 100vh;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.25),
     rgb(0, 0, 0, 0.75)
-  );
+  ); */
 }
 
 h1 {
