@@ -16,17 +16,20 @@
       </div>
 
       <Card :weathers="weathers"></Card>
+      <Modal v-if="showModal" />
     </main>
   </div>
 </template>
 
 <script>
 import Card from "../src/components/Card.vue";
+import Modal from "../src/components/Modal.vue";
 
 export default {
   name: "App",
   components: {
     Card,
+    Modal,
   },
   data() {
     return {
@@ -34,6 +37,7 @@ export default {
       baseUrl: "https://api.openweathermap.org/data/2.5/",
       searchWeather: "",
       weathers: [],
+      showModal: false,
     };
   },
   methods: {
@@ -72,6 +76,7 @@ export default {
         );
 
         if (cityIsExistent) {
+          this.showModal = !this.showModal;
           alert("You are already monitoring this city!");
         } else {
           //limiting slots to 5 cities
