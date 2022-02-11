@@ -1,5 +1,46 @@
 <template>
-  <div id="app">
+  <!-- night theme -->
+  <div
+    v-if="backgroundWeather"
+    id="app"
+    style="
+      background: #efeebc;
+      background: linear-gradient(to bottom, #efeebc 0%, #61d0cf 100%);
+    "
+  >
+    <main>
+      <div id="title-app">
+        <h1>My Weather</h1>
+      </div>
+
+      <div class="container-search">
+        <input
+          class="search"
+          type="text"
+          placeholder="Search the city..."
+          v-model="searchWeather"
+          @keypress="getWeather"
+        />
+      </div>
+
+      <Card :weathers="weathers"></Card>
+      <Modal
+        :messageError="messageError"
+        v-show="showModal"
+        @close="closeModal"
+      />
+    </main>
+  </div>
+
+  <!-- day theme -->
+  <div
+    v-else
+    id="app"
+    style="
+      background: #040b3c;
+      background: linear-gradient(to bottom, #040b3c 0%, #233072 100%);
+    "
+  >
     <main>
       <div id="title-app">
         <h1>My Weather</h1>
@@ -43,7 +84,12 @@ export default {
       weathers: [],
       showModal: false,
       messageError: "",
+      backgroundWeather: null,
     };
+  },
+  mounted() {
+    //set theme day or night
+    this.backgroundWeather = this.getCurrentTime();
   },
   methods: {
     async getWeather(e) {
@@ -110,6 +156,18 @@ export default {
     closeModal() {
       this.showModal = !this.showModal;
     },
+
+    getCurrentTime() {
+      var data = new Date().getHours() + ":" + new Date().getMinutes;
+
+      var newData = data.split(":");
+
+      if (newData[0] >= 5 && newData[0] <= 18) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
 };
 </script>
@@ -125,7 +183,6 @@ export default {
 }
 
 #app {
-  background: linear-gradient(to bottom, #1d65f0 0%, #1ad3fd 100%);
   background-size: cover;
   background-position: bottom;
   transition: 0.4s;
@@ -138,15 +195,11 @@ main {
   align-items: center;
   padding-top: 30px;
   min-height: 100vh;
-  /* background-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.25),
-    rgb(0, 0, 0, 0.75)
-  ); */
 }
 
 h1 {
   color: white;
+  text-shadow: #696969 1px 1px 1px;
 }
 
 .container-search .search {
