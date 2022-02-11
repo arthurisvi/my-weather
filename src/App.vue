@@ -19,7 +19,7 @@
           type="text"
           placeholder="Search the city..."
           v-model="searchWeather"
-          @keypress="getWeather"
+          @keypress="getWeatherUser"
         />
       </div>
 
@@ -52,7 +52,7 @@
           type="text"
           placeholder="Search the city..."
           v-model="searchWeather"
-          @keypress="getWeather"
+          @keypress="getWeatherUser"
         />
       </div>
 
@@ -90,10 +90,32 @@ export default {
   mounted() {
     //set theme day or night
     this.backgroundWeather = this.getCurrentTime();
+    this.getWeather();
   },
   methods: {
-    async getWeather(e) {
+    async getWeather() {
+      var cities = [
+        "brasilia",
+        "caruaru",
+        "gameleira",
+        "recife",
+        "rio de janeiro",
+      ];
+
+      for (let i = 0; i < cities.length; i++) {
+        fetch(
+          `${this.baseUrl}weather?q=${cities[i]}&&units=metric&APPID=${this.apiKey}`
+        )
+          .then((res) => {
+            return res.json();
+          })
+          .then(this.setWeathersResults);
+      }
+    },
+
+    async getWeatherUser(e) {
       if (e.key === "Enter") {
+        console.log("entrou");
         fetch(
           `${this.baseUrl}weather?q=${this.searchWeather}&&units=metric&APPID=${this.apiKey}`
         )
@@ -105,6 +127,7 @@ export default {
     },
 
     setWeathersResults(results) {
+      console.log(results);
       if (results.cod === 200) {
         const cityWeather = {
           id: results.id,
