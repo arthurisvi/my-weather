@@ -243,4 +243,12 @@ h1 {
   box-shadow: 0px 0px 16px rgb(0, 0, 0, 0.25);
   border-radius: 16px 0px 16px 0px;
 }
+
+/* responsive  screen mobile */
+@media screen and (max-width: 768px) {
+  .container-search .search {
+    width: 250px;
+    height: 40px;
+  }
+}
 </style>

@@ -147,4 +147,21 @@ export default {
   width: 36px;
   height: 36px;
 }
+
+/* responsive  screen mobile */
+@media screen and (max-width: 768px) {
+  .card-container {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .card {
+    flex: 0 1 60%;
+    margin-bottom: 20px;
+  }
+}
 </style>
