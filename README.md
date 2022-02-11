@@ -3,9 +3,21 @@
 ## Project description
 
 ```
-
 Web application that shows the current weather of cities.
 ```
+### Functional requirements
+* Show current weather for 5 cities
+* User can add and remove other cities
+### Validations 
+* User cannot track more than 5 cities simultaneously
+* Unable to add the same city for monitoring
+
+## Day theme 
+![image](https://user-images.githubusercontent.com/83462514/153606982-58cdd753-05c2-415e-8bcf-497927569f05.png)
+
+## Night theme 
+![image](https://user-images.githubusercontent.com/83462514/153607595-312f70e4-a06b-4d50-b076-02ba17a2943a.png)
+
 
 ## Project setup
 
@@ -25,12 +37,5 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
 
-```
-npm run lint
-```
 
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
