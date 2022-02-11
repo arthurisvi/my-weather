@@ -18,6 +18,9 @@ Web application that shows the current weather of cities.
 ## Night theme 
 ![image](https://user-images.githubusercontent.com/83462514/153607595-312f70e4-a06b-4d50-b076-02ba17a2943a.png)
 
+## Mobile screen
+<img src = "https://im3.ezgif.com/tmp/ezgif-3-73473b5a04.gif" style = "width: 250px">
+
 
 ## Project setup
 
